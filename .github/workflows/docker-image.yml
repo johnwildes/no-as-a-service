@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - dev
 
 jobs:
   build-and-push:
@@ -27,10 +28,12 @@ jobs:
 
       - name: Build Docker image
         run: |
-          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/no-as-a-service:latest
+          BRANCH=$(echo "${GITHUB_REF##*/}" | tr '[:upper:]' '[:lower:]')
+          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/no-as-a-service:$BRANCH
           docker build -t $IMAGE_NAME .
 
       - name: Push Docker image
         run: |
-          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/no-as-a-service:latest
+          BRANCH=$(echo "${GITHUB_REF##*/}" | tr '[:upper:]' '[:lower:]')
+          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/no-as-a-service:$BRANCH
           docker push $IMAGE_NAME
