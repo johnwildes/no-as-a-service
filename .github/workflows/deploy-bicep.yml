@@ -28,6 +28,9 @@ jobs:
     - name: Deploy Bicep file
       run: |
         RG_NAME="${{ vars.AZURE_RESOURCE_GROUP }}-$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 4 | head -n 1)"
+        az group create \
+          --name "$RG_NAME" \
+          --location "${{ vars.AZURE_LOCATION }}"
         az deployment group create \
           --resource-group "$RG_NAME" \
           --template-file inf/main.bicep \
