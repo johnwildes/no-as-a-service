@@ -17,7 +17,7 @@
     "containerPort": {
       "value": 80
     },
-    "containerCpu": {
+    "containerCPU": {
       "value": 0.5
     },
     "containerMemory": {

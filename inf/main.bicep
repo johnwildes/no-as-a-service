@@ -5,6 +5,8 @@ param environmentName string = 'myContainerEnv'
 param containerAppName string = 'myApiApp'
 param containerImage string = 'myregistry.azurecr.io/myapi:latest'
 param containerPort int = 80
+param containerCPU int = 1
+param containerMemory string = '1.0Gi'
 
 resource containerApp 'Microsoft.App/containerApps@2023-03-01' = {
   name: containerAppName
@@ -23,8 +25,8 @@ resource containerApp 'Microsoft.App/containerApps@2023-03-01' = {
           name: 'app'
           image: containerImage
           resources: {
-            cpu: '0.5'
-            memory: '1.0Gi'
+            cpu: containerCPU
+            memory: containerMemory
           }
         }
       ]
