@@ -18,7 +18,7 @@
       "value": 80
     },
     "containerCPU": {
-      "value": 0.5
+      "value": 1
     },
     "containerMemory": {
       "value": "1.0Gi"
